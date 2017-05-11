@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd	
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<mvc:annotation-driven/>	
+	<mvc:default-servlet-handler/>
+	
+	<context:component-scan base-package="com.fh.controller" />
+	<context:component-scan base-package="com.json" />
+
+	<!-- 对静态资源文件的访问  restful-->     
+	<mvc:resources mapping="/admin/**" location="/,/admin/" />
+	<mvc:resources mapping="/static/**" location="/,/static/" />
+	<mvc:resources mapping="/plugins/**" location="/,/plugins/" />
+	<mvc:resources mapping="/uploadFiles/**" location="/,/uploadFiles/" /> 
+
+	<!-- 访问拦截  -->  
+  	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/**"/>
+			<bean class="com.fh.interceptor.LoginHandlerInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!--  <bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+		 <property name="basename" value="views"></property>
+		 
+		 <property name="order"value="0"></property>
+		 
+ 	</bean>  -->
+	 
+	<!-- 配置SpringMVC的视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+		<property name="order" value="1"></property>
+	</bean>
+	
+	<bean id="exceptionResolver" class="com.fh.resolver.MyExceptionResolver"></bean>
+	<!-- 上传拦截，如最大上传值及最小上传值 -->
+	  <bean id="multipartResolver"   class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >   
+		  <property name="maxUploadSize">    
+	          <value>104857600</value>    
+	       </property>   
+	        <property name="maxInMemorySize">    
+	            <value>4096</value>    
+	        </property>   
+	         <property name="defaultEncoding">    
+	            <value>utf-8</value>    
+	        </property> 
+    </bean>  
+    
+    
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean id="velocityCongfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath">
+			<value>/WEB-INF/home/</value>
+		</property>
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding ">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.velocity.VelocityView" />
+		<property name="contentType">
+			<value>text/html;charset=UTF-8</value>
+		</property>
+		<property name="order" value="0"></property>
+	</bean> 
+    
+    
+	
+</beans>

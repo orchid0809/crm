@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RentalMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		CRM_RENTAL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		INFO_TITLE,	
+		TYPE,	
+		INFO_CONTENT,	
+		CONTACT_PHONE,	
+		PUBLISH_TIME,	
+		DEADLINE_TIME,	
+		RENTAL_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{INFO_TITLE},	
+		#{TYPE},	
+		#{INFO_CONTENT},	
+		#{CONTACT_PHONE},	
+		#{PUBLISH_TIME},	
+		#{DEADLINE_TIME},	
+		#{RENTAL_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			RENTAL_ID = #{RENTAL_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			INFO_TITLE = #{INFO_TITLE},
+			INFO_CONTENT = #{INFO_CONTENT},
+			CONTACT_PHONE = #{CONTACT_PHONE},
+			PUBLISH_TIME = #{PUBLISH_TIME},
+			DEADLINE_TIME = #{DEADLINE_TIME},
+		RENTAL_ID = RENTAL_ID
+		where 
+		RENTAL_ID = #{RENTAL_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			RENTAL_ID = #{RENTAL_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and (
+
+			INFO_TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+
+			or CONTACT_PHONE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			)
+		</if>
+
+		<if test="pd.publishTime!= null and pd.publishTime!= ''"><!-- 关键词检索 -->
+			and PUBLISH_TIME >= date_format(#{pd.publishTime},'%Y-%m-%d')
+
+		</if>
+		<if test="pd.deadLineTime!= null and pd.deadLineTime!= ''"><!-- 关键词检索 -->
+			and DEADLINE_TIME &lt;= date_format(#{pd.deadLineTime},'%Y-%m-%d')
+
+		</if>
+
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+
+		where 1=1
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and (
+
+			INFO_TITLE LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+
+			or CONTACT_PHONE LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+			)
+		</if>
+
+		<if test="publishTime!= null and publishTime!= ''"><!-- 关键词检索 -->
+			and PUBLISH_TIME >= date_format(#{publishTime},'%Y-%m-%d')
+
+		</if>
+		<if test="deadLineTime!= null and deadLineTime!= ''"><!-- 关键词检索 -->
+			and DEADLINE_TIME &lt;= date_format(#{deadLineTime},'%Y-%m-%d')
+
+		</if>
+
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			RENTAL_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- fh313596790qq(青苔) -->
+</mapper>

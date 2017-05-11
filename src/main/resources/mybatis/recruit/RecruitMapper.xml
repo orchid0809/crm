@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RecruitMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		CRM_RECRUIT
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		PUBLISH_NAME,	
+		ENTERPRISE_NAME,	
+		CONTACT_PHONE,	
+		ENTERPRISE_ADDRESS,	
+		PUBLISH_TIME,	
+		DEADLINE_TIME,	
+		AMOUNT,	
+		REMARK,	
+		RECRUIT_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{PUBLISH_NAME},	
+		#{ENTERPRISE_NAME},	
+		#{CONTACT_PHONE},	
+		#{ENTERPRISE_ADDRESS},	
+		#{PUBLISH_TIME},	
+		#{DEADLINE_TIME},	
+		#{AMOUNT},	
+		#{REMARK},	
+		#{RECRUIT_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			RECRUIT_ID = #{RECRUIT_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			PUBLISH_NAME = #{PUBLISH_NAME},
+			ENTERPRISE_NAME = #{ENTERPRISE_NAME},
+			CONTACT_PHONE = #{CONTACT_PHONE},
+			ENTERPRISE_ADDRESS = #{ENTERPRISE_ADDRESS},
+			PUBLISH_TIME = #{PUBLISH_TIME},
+			DEADLINE_TIME = #{DEADLINE_TIME},
+			AMOUNT = #{AMOUNT},
+			REMARK = #{REMARK},
+		RECRUIT_ID = RECRUIT_ID
+		where 
+		RECRUIT_ID = #{RECRUIT_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			RECRUIT_ID = #{RECRUIT_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.recruitPhone!= null and pd.recruitPhone != ''"><!-- 关键词检索 -->
+			and
+			CONTACT_PHONE like '%${pd.recruitPhone}%'
+		</if>
+		<if test="pd.publishTime!= null and pd.publishTime!= ''"><!-- 关键词检索 -->
+			and PUBLISH_TIME >= date_format(#{pd.publishTime},'%Y-%m-%d')
+
+		</if>
+		<if test="pd.deadLineTime!= null and pd.deadLineTime!= ''"><!-- 关键词检索 -->
+			and DEADLINE_TIME &lt;= date_format(#{pd.deadLineTime},'%Y-%m-%d')
+
+		</if>
+
+		<if test="pd.enterpriseName!= null and pd.enterpriseName!= ''"><!-- 关键词检索 -->
+			and ENTERPRISE_NAME like '%${pd.enterpriseName}%'
+
+		</if>
+
+		<if test="pd.enterpriseAddress!= null and pd.enterpriseAddress!= ''"><!-- 关键词检索 -->
+			and ENTERPRISE_ADDRESS like '%${pd.enterpriseAddress}%'
+
+		</if>
+
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			RECRUIT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+
+</mapper>

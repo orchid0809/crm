@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系我们_dedecms高端html5织梦网络公司模板</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="/skin/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]><script src="/skin/js/html5.js" type="text/javascript"></script><![endif]-->
+<script type="text/javascript" src="/skin/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){$("#loading").animate({top:'-1680px'},1000);$("#loading").fadeOut(500);})
+</script>
+<script>
+ function postform(){
+	var name=document.formWrite.name;
+	var tel=document.formWrite.tel;
+	var email=document.formWrite.email;
+	var content=document.formWrite.content;
+	
+	if (name.value==""){
+		alert("姓名不能为空！");
+		name.focus();
+		return false;
+		}
+	if (tel.value==""){
+		alert("电话不能为空！");
+		tel.focus();
+		return false;
+		}
+	if (email.value==""){
+		alert("email不能为空！");
+		email.focus();
+		return false;
+		}
+	if (content.value==""){
+		alert("留言内容不能为空！");
+		content.focus();
+		return false;
+		}
+		alert("我们已收到您的留言");
+        return false;
+    }
+</script>
+</head>
+<body>
+<div id="loading">
+  <div class="more-loading"></div>
+  <p>路遥知马力，日久见人心!了解我们的时间并不多，或许只需短短的20秒. . .</p>
+</div>
+<header>
+  <div class="top">
+    <div class="w1000"> <span><a href="javascript:void(0)" onmouseup="SetHome(window.location)">设为首页</a> | <a href="javascript:void(0)" onmouseup="AddFavorite(window.location,document.title)">收藏本站</a></span>欢迎来到海南织梦58网络科技有限公司！ </div>
+  </div>
+  <div class="w1000">
+    <div class="logo"><img src="/skin/images/logo.png" height="56" alt="dedecms高端html5织梦网络公司模板" /></div>
+    <div class="menu">
+      <ul>
+        <li><a href="/">网站首页</a></li>
+        
+        <li><a href="/a/about/">关于我们</a></li>
+        
+        <li><a href="/a/fuwu/">服务项目</a></li>
+        
+        <li><a href="/a/news/">新闻资讯</a></li>
+        
+        <li><a href="/a/anli/">客户案例</a></li>
+        <li><a href='/a/contact/' class='on' ><span>联系我们</span></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="contact-warp padding60 contact-bg">
+  <div class="w1000">
+    <div class="Title-group">
+      <h2 class="title-sub">联系我们<span>Contact Us</span></h2>
+      <p class="sub-tit">” 让我们通过沟通开始这次愉快的合作！ “</p>
+    </div>
+    <ul class="contact-detail">
+      <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=329435596&site=qq&menu=yes" class="am-byqq" title="QQ在线联系">QQ联系</a> <span>QQ在线联系</span> <em></em> </li>
+      <li> <a href="Mailto:admin@dede58.com" class="am-byemail" title="发电子邮件">邮件联系</a> <span>给我们发邮件</span> <em>admin@dede58.com</em> </li>
+      <li> <a target="_blank" href="http://www.weibo.com" class="am-byweibo" title="关注我们新浪微博">私信我们</a> <span>新浪微博</span> <em>http://www.weibo.com</em> </li>
+      <li> <a href="#1" class="am-byphone" title="给我们打电话">电话我们</a> <span>给我们打电话</span> <em>0898-66899888</em> </li>
+    </ul>
+  </div>
+</div>
+<div class="contact-warp padding60">
+  <div class="w1000">
+    <div class="Title-group">
+      <h2 class="title-sub c-black">在线提交需求<span>Give Us A Project OnLine</span></h2>
+      <p>“尊敬的客户，我们将在收到您信息的24小时内和您沟通确认。”</p>
+    </div>
+    <div class="project-form">
+      <article id="post-9" class="post-9 page type-page status-publish hentry">
+        <header class="entry-header">
+          <h1 class="entry-title">联系</h1>
+        </header>
+        <div class="entry-content">
+          <form action="/plus/diy.php" enctype="multipart/form-data" method="post">
+            <input type="hidden" name="action" value="post">
+            <input type="hidden" name="diyid" value="1">
+            <input type="hidden" name="do" value="2">
+            <ul>
+              <li id="fm-item-text-532c32876c09e">
+                <label style="display:block;width:px;">您的名称					&nbsp;<em>*</em> </label>
+                <input type="text" name="name" id="name" style="width:px;" maxlength="100" placeholder="请输入您的名称" />
+              </li>
+              <li id="fm-item-text-532c32b3a8226">
+                <label style="display:block;width:px;">您的电话					&nbsp;<em>*</em> </label>
+                <input type="text" name="tel" id="tel" style="width:px;" placeholder="请输入您的电话号码" />
+              </li>
+              <li id="fm-item-text-532c32d5b870d">
+                <label style="display:block;width:px;">您的邮箱 </label>
+                <input type="text" name="email" id="email" style="width:px;" placeholder="请输入您的邮箱地址" />
+              </li>
+              <li id="fm-item-text-532c3390c57ce">
+                <label style="display:block;width:px;">您的QQ </label>
+                <input type="text" name="qq" id="qq" style="width:px;" placeholder="请输入您的QQ号码" />
+              </li>
+              <li id="fm-item-textarea-532c33b869a6d">
+                <label style="display:block;width:px;">您的需求					&nbsp;<em>*</em> </label>
+                <textarea name="content" id="content" style="width:px;height:px;" placeholder="请输入您的需求"></textarea>
+              </li>
+            </ul>
+            <div style="width:200px; margin:0 auto">
+              <input type="submit" name="submit" id="submit" class="submit" value="猛击这里提交"   />
+            </div>
+            <input type="hidden" name="dede_fields" value="name,text;tel,text;email,text;qq,text;content,text">
+            <input type="hidden" name="dede_fieldshash" value="ce80e761db83cf37e5b700c8f28f1592">
+          </form>
+        </div>
+      </article>
+      <!-- #post --> 
+      
+    </div>
+  </div>
+</div>
+<div class="contact-warp mapbg">
+  <div class="w1000">
+    <div class="Title-group">
+      <h2 class="title-sub c-black"> </h2>
+    </div>
+    <div class="contacnt-address"> 海南织梦58网络科技有限公司地址<br/>
+      <em>海南省海口市玉沙大道99号金城大厦</em> </div>
+  </div>
+</div>
+<script src="/skin/js/jquery-1.7.1.min.js" type="text/javascript"></script> 
+<script src="/skin/js/js.js" type="text/javascript"></script>
+<div class="clearfix"></div>
+<footer>
+  <div class="footfixed">
+    <div class="c-txt">Copyright &copy; 2002-2011 DEDE58.COM 织梦模板 版权所有 <span>备案信息：粤ICP备69589678号 </span> </div>
+    <div class="c-way"> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=329435596&site=qq&menu=yes" title="QQ在线联系" class="qq">329435596</a> <span>/</span> <a href="Mailto:admin@dede58.com" title="给我们发邮件" class="mail">admin@dede58.com</a> </div>
+  </div>
+</footer>
+<div class="main">
+  <div class="floatCtro">
+    <ul>
+      <li class="dd1"><span class="lc1"></span>
+        <div class="lcc1">
+          <div class="lcbj">
+            <p><a href="http://wpa.qq.com/msgrd?v=3&uin=329435596&site=qq&menu=yes">客服一</a></p>
+            <p><a href="http://wpa.qq.com/msgrd?v=3&uin=329435596&site=qq&menu=yes">客服二</a></p>
+            <p><a href="http://wpa.qq.com/msgrd?v=3&uin=329435596&site=qq&menu=yes">客服三</a></p>
+          </div>
+        </div>
+      </li>
+      <li class="dd2"><span class="lc2"></span>
+        <div class="lcc1">
+          <div class="wx"> <img src="/skin/images/weixin.png"/> </div>
+        </div>
+      </li>
+      <li class="dd3"><span class="lc3"></span> </li>
+    </ul>
+    <div class="black"> <span></span> </div>
+  </div>
+</div>
+
+</body>
+</html>
